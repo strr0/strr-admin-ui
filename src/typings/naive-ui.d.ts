@@ -26,7 +26,7 @@ declare namespace NaiveUI {
 
   type TableColumn<T> = TableColumnWithKey<T> | DataTableSelectionColumn<T> | DataTableExpandColumn<T>;
 
-  type TableApiFn<T = any, R = Api.Common.PaginatingCommonParams> = (
+  type TableApiFn<T = any, R = Api.System.CommonSearchParams> = (
     params: R
   ) => Promise<FlatResponseData<Api.Common.PaginatingQueryRecord<T>>>;
 
@@ -42,7 +42,7 @@ declare namespace NaiveUI {
 
   type NaiveTableConfig<A extends TableApiFn> = Pick<
     import('@/hooks/common').TableConfig<A, GetTableData<A>, TableColumn<TableDataWithIndex<GetTableData<A>>>>,
-    'apiFn' | 'apiParams' | 'columns' | 'immediate'
+    'apiFn' | 'apiParams' | 'columns' | 'tree' | 'immediate'
   > & {
     /**
      * whether to display the total items count

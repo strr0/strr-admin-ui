@@ -52,7 +52,7 @@ function createCommonRequest<ResponseData = any>(
     async response => {
       const responseType: ResponseType = (response.config?.responseType as ResponseType) || 'json';
 
-      if (responseType !== 'json' || opts.isBackendSuccess(response)) {
+      if (responseType !== 'json' || response.config?.result || opts.isBackendSuccess(response)) {
         return Promise.resolve(response);
       }
 
@@ -122,6 +122,10 @@ export function createRequest<ResponseData = any, State = Record<string, unknown
 
     const responseType = response.config?.responseType || 'json';
 
+    if (config?.result) {
+      return response.data;
+    }
+
     if (responseType === 'json') {
       return opts.transformBackendResponse(response);
     }
@@ -158,6 +162,12 @@ export function createFlatRequest<ResponseData = any, State = Record<string, unk
       const response: AxiosResponse<ResponseData> = await instance(config);
 
       const responseType = response.config?.responseType || 'json';
+
+      if (config?.result) {
+        const data = response.data;
+
+        return { data, error: null };
+      }
 
       if (responseType === 'json') {
         const data = opts.transformBackendResponse(response);

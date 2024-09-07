@@ -154,7 +154,12 @@ const local: App.I18n.Schema = {
     404: '页面不存在',
     500: '服务器错误',
     'iframe-page': '外链页面',
-    home: '首页'
+    home: '首页',
+    system: '系统管理',
+    user: '用户管理',
+    'user-detail': '用户详情',
+    role: '角色管理',
+    resource: '菜单管理'
   },
   page: {
     login: {
@@ -229,6 +234,104 @@ const local: App.I18n.Schema = {
         desc5: 'Soybean 刚才把工作台页面随便写了一些，凑合能看了！'
       },
       creativity: '创意'
+    },
+    system: {
+      common: {
+        status: {
+          enable: '启用',
+          disable: '禁用'
+        }
+      },
+      role: {
+        title: '角色列表',
+        name: '角色名称',
+        code: '角色编码',
+        status: '角色状态',
+        remark: '角色描述',
+        resourceAuth: '资源权限',
+        form: {
+          name: '请输入角色名称',
+          code: '请输入角色编码',
+          status: '请选择角色状态',
+          remark: '请输入角色描述'
+        },
+        addRole: '新增角色',
+        editRole: '编辑角色'
+      },
+      user: {
+        title: '用户列表',
+        username: '用户名',
+        nickname: '昵称',
+        phone: '手机号',
+        email: '邮箱',
+        status: '用户状态',
+        role: '用户角色',
+        form: {
+          username: '请输入用户名',
+          nickname: '请输入昵称',
+          phone: '请输入手机号',
+          email: '请输入邮箱',
+          status: '请选择用户状态',
+          role: '请选择用户角色'
+        },
+        addUser: '新增用户',
+        editUser: '编辑用户'
+      },
+      resource: {
+        title: '资源列表',
+        id: 'ID',
+        parentId: '父级资源ID',
+        type: '资源类型',
+        name: '资源名称',
+        path: '路由路径',
+        param: '路径参数',
+        component: '路由组件',
+        i18nKey: '国际化key',
+        icon: '图标',
+        localIcon: '本地图标',
+        iconTypeTitle: '图标类型',
+        order: '排序',
+        constant: '常量路由',
+        cache: '缓存路由',
+        frame: '是否外链',
+        href: '外链',
+        visible: '展示菜单',
+        perms: '资源权限',
+        query: '路由参数',
+        status: '资源状态',
+        form: {
+          home: '请选择首页',
+          type: '请选择菜单类型',
+          name: '请输入资源名称',
+          path: '请输入路由路径',
+          param: '请输入路径参数',
+          component: '请输入路由组件',
+          i18nKey: '请输入国际化key',
+          icon: '请输入图标',
+          localIcon: '请选择本地图标',
+          order: '请输入排序',
+          cache: '请选择是否缓存路由',
+          frame: '请选择是否外链',
+          href: '请输入外链',
+          visible: '请选择是否展示菜单',
+          perms: '请输入资源权限',
+          queryKey: '请输入路由参数Key',
+          queryValue: '请输入路由参数Value',
+          status: '请选择菜单状态'
+        },
+        addResource: '新增资源',
+        editResource: '编辑资源',
+        addChildResource: '新增子资源',
+        resourceType: {
+          directory: '目录',
+          menu: '菜单',
+          button: '按钮'
+        },
+        iconType: {
+          iconify: 'iconify图标',
+          local: '本地图标'
+        }
+      }
     }
   },
   form: {

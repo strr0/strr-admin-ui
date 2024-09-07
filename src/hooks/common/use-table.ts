@@ -14,13 +14,13 @@ export type TableColumnCheck = {
   checked: boolean;
 };
 
-export type TableDataWithIndex<T> = T & { index: number };
+export type TableDataWithIndex<T> = T & { index?: number };
 
 export type TransformedData<T> = {
   data: TableDataWithIndex<T>[];
-  pageNum: number;
-  pageSize: number;
-  total: number;
+  pageNum?: number;
+  pageSize?: number;
+  total?: number;
 };
 
 export type Transformer<T, Response> = (response: Response) => TransformedData<T>;
@@ -52,6 +52,10 @@ export type TableConfig<A extends ApiFn, T, C> = {
    * @param transformed transformed data
    */
   onFetched?: (transformed: TransformedData<T>) => MaybePromise<void>;
+  /**
+   * tree
+   */
+  tree?: boolean;
   /**
    * whether to get data immediately
    *

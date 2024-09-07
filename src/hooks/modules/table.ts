@@ -16,7 +16,7 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
 
   const isMobile = computed(() => appStore.isMobile);
 
-  const { apiFn, apiParams, immediate, showTotal } = config;
+  const { apiFn, apiParams, immediate, showTotal, tree } = config;
 
   const SELECTION_KEY = '__selection__';
 
@@ -37,26 +37,33 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
     apiFn,
     apiParams,
     columns: config.columns,
-    transformer: res => {
-      const { content = [], page = 1, size = 10, total = 0 } = res || {};
-
-      // Ensure that the size is greater than 0, If it is less than 0, it will cause paging calculation errors.
-      const pageSize = size <= 0 ? 10 : size;
-
-      const contentWithIndex = content.map((item, index) => {
+    transformer: (tree ?
+      res => {
         return {
-          ...item,
-          index: (page - 1) * pageSize + index + 1
-        };
-      });
+          data: res.data || []
+        }
+      } :
+      res => {
+        const { content = [], page = 1, size = 10, total = 0 } = res.data || {};
 
-      return {
-        data: contentWithIndex,
-        pageNum: page,
-        pageSize,
-        total
-      };
-    },
+        // Ensure that the size is greater than 0, If it is less than 0, it will cause paging calculation errors.
+        const pageSize = size <= 0 ? 10 : size;
+
+        const contentWithIndex = content.map((item, index) => {
+          return {
+            ...item,
+            index: (page - 1) * pageSize + index + 1
+          };
+        });
+
+        return {
+          data: contentWithIndex,
+          pageNum: page,
+          pageSize,
+          total
+        };
+      }
+    ),
     getColumnChecks: cols => {
       const checks: NaiveUI.TableColumnCheck[] = [];
 
@@ -103,7 +110,7 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
 
       return filteredColumns;
     },
-    onFetched: async transformed => {
+    onFetched: tree ? undefined : async transformed => {
       const { pageNum, pageSize, total } = transformed;
 
       updatePagination({
@@ -115,7 +122,7 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
     immediate
   });
 
-  const pagination: PaginationProps = reactive({
+  const pagination: PaginationProps = tree ? undefined : reactive({
     page: 1,
     pageSize: 10,
     showSizePicker: true,
@@ -149,7 +156,7 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
   });
 
   // this is for mobile, if the system does not support mobile, you can use `pagination` directly
-  const mobilePagination = computed(() => {
+  const mobilePagination = tree ? undefined : computed(() => {
     const p: PaginationProps = {
       ...pagination,
       pageSlot: isMobile.value ? 3 : 9,
@@ -159,7 +166,7 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
     return p;
   });
 
-  function updatePagination(update: Partial<PaginationProps>) {
+  const updatePagination: (update: Partial<PaginationProps>) => _ = tree ? _ => _ : update => {
     Object.assign(pagination, update);
   }
 
@@ -168,7 +175,7 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
    *
    * @param pageNum the page number. default is 1
    */
-  async function getDataByPage(pageNum: number = 1) {
+  const getDataByPage: (pageNum: number) => _ = tree ? _ => _ : async (pageNum = 1) => {
     updatePagination({
       page: pageNum
     });

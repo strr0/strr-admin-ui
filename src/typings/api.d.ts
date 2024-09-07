@@ -24,14 +24,14 @@ declare namespace Api {
      * enable status
      *
      * - "1": enabled
-     * - "2": disabled
+     * - "0": disabled
      */
-    type EnableStatus = '1' | '2';
+    type EnableStatus = '1' | '0';
 
     /** common record */
     type CommonRecord<T = any> = {
       /** record id */
-      id: number;
+      id: number | null;
       /** record creator */
       createBy: string;
       /** record create time */
@@ -75,5 +75,116 @@ declare namespace Api {
     interface MenuRoute extends CustomRoute {
       id: string;
     }
+  }
+
+  /**
+   * namespace System
+   *
+   * backend api module: "system"
+   */
+  namespace System {
+    type CommonSearchParams = Pick<Common.PaginatingCommonParams, 'page' | 'size'>;
+
+    /** role */
+    type Role = Common.CommonRecord<{
+      /** role name */
+      name: string;
+      /** role code */
+      code: string;
+      /** role description */
+      remark: string;
+    }>;
+
+    /** role search params */
+    type RoleSearchParams = CommonType.RecordNullable<
+      Pick<Api.System.Role, 'name' | 'code' | 'status'> & CommonSearchParams
+    >;
+
+    /** role list */
+    type RoleList = Common.PaginatingQueryRecord<Role>;
+
+    /** all role */
+    type AllRole = Pick<Role, 'id' | 'name' | 'code'>;
+
+    /** user */
+    type User = Common.CommonRecord<{
+      /** user name */
+      username: string;
+      /** user nick name */
+      nickname: string;
+      /** user phone */
+      phone: string;
+      /** user email */
+      email: string;
+      /** avatar */
+      avatar?: string;
+      /** remark */
+      remark?: string;
+      /** user role code collection */
+      roleIds: string[];
+    }>;
+
+    /** user search params */
+    type UserSearchParams = CommonType.RecordNullable<
+      Pick<Api.System.User, 'username' | 'nickname' | 'phone' | 'email' | 'status'> &
+        CommonSearchParams
+    >;
+
+    /** user list */
+    type UserList = Common.PaginatingQueryRecord<User>;
+
+    /**
+     * resource type
+     *
+     * - "D": directory
+     * - "M": menu
+     * - "B": button
+     */
+    type ResourceType = 'D' | 'M' | 'B';
+
+    /**
+     * icon type
+     *
+     * - "1": iconify icon
+     * - "2": local icon
+     */
+    type IconType = '1' | '2';
+
+    type ResourcePropsOfRoute = Pick<
+      import('vue-router').RouteMeta,
+      | 'i18nKey'
+      | 'order'
+      | 'query'
+    >;
+
+    type Resource = Common.CommonRecord<{
+      /** parent menu id */
+      parentId: number;
+      /** resource type */
+      type: ResourceType;
+      /** resource name */
+      name: string;
+      /** route path */
+      path: string;
+      /** component */
+      component?: string;
+      /** is frame */
+      frame: string;
+      /** is cache */
+      cache: string;
+      /** iconify icon name or local icon name */
+      icon: string;
+      /** icon type */
+      iconType: IconType;
+      /** is visible */
+      visible: string;
+      /** permissions */
+      perms?: string;
+      /** remark */
+      remark?: string;
+      /** children menu */
+      children?: Resource[] | null;
+    }> &
+      ResourcePropsOfRoute;
   }
 }

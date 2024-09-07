@@ -154,7 +154,12 @@ const local: App.I18n.Schema = {
     404: 'Page Not Found',
     500: 'Server Error',
     'iframe-page': 'Iframe',
-    home: 'Home'
+    home: 'Home',
+    system: 'System Manage',
+    user: 'User Manage',
+    'user-detail': 'User Detail',
+    role: 'Role Manage',
+    resource: 'Resource Manage'
   },
   page: {
     login: {
@@ -229,6 +234,104 @@ const local: App.I18n.Schema = {
         desc5: 'Soybean just wrote some of the workbench pages casually, and it was enough to see!'
       },
       creativity: 'Creativity'
+    },
+    system: {
+      common: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable'
+        }
+      },
+      role: {
+        title: 'Role List',
+        name: 'Role Name',
+        code: 'Role Code',
+        status: 'Role Status',
+        remark: 'Role Remark',
+        resourceAuth: 'Resource Auth',
+        form: {
+          name: 'Please enter role name',
+          code: 'Please enter role code',
+          status: 'Please select role status',
+          remark: 'Please enter role remark'
+        },
+        addRole: 'Add Role',
+        editRole: 'Edit Role'
+      },
+      user: {
+        title: 'User List',
+        username: 'User Name',
+        nickname: 'Nick Name',
+        phone: 'Phone Number',
+        email: 'Email',
+        status: 'User Status',
+        role: 'User Role',
+        form: {
+          username: 'Please enter user name',
+          nickname: 'Please enter nick name',
+          phone: 'Please enter phone number',
+          email: 'Please enter email',
+          status: 'Please select user status',
+          role: 'Please select user role'
+        },
+        addUser: 'Add User',
+        editUser: 'Edit User'
+      },
+      resource: {
+        title: 'Resource List',
+        id: 'ID',
+        parentId: 'Parent ID',
+        type: 'Resource Type',
+        name: 'Resource Name',
+        path: 'Route Path',
+        param: 'Path Param',
+        component: 'Route Component',
+        i18nKey: 'I18n Key',
+        icon: 'Icon',
+        localIcon: 'Local Icon',
+        iconTypeTitle: 'Icon Type',
+        order: 'Order',
+        constant: 'Constant',
+        cache: 'Keep Alive',
+        frame: 'Is Frame',
+        href: 'Href',
+        visible: 'Show In Menu',
+        perms: 'Resource permissions',
+        query: 'Query Params',
+        status: 'Resource Status',
+        form: {
+          home: 'Please select home',
+          type: 'Please select resource type',
+          name: 'Please enter resource name',
+          path: 'Please enter route path',
+          param: 'Please enter path param',
+          component: 'Please enter route component',
+          i18nKey: 'Please enter i18n key',
+          icon: 'Please enter iconify name',
+          localIcon: 'Please enter local icon name',
+          order: 'Please enter order',
+          cache: 'Please select whether to cache route',
+          frame: 'Please select whether to frame',
+          href: 'Please enter href',
+          visible: 'Please select whether to show menu',
+          perms: 'Please enter resource permissions',
+          queryKey: 'Please enter route parameter Key',
+          queryValue: 'Please enter route parameter Value',
+          status: 'Please select resource status'
+        },
+        addResource: 'Add Resource',
+        editResource: 'Edit Resource',
+        addChildResource: 'Add Child Resource',
+        resourceType: {
+          directory: 'Directory',
+          menu: 'Menu',
+          button: 'Button'
+        },
+        iconType: {
+          iconify: 'Iconify Icon',
+          local: 'Local Icon'
+        }
+      }
     }
   },
   form: {
