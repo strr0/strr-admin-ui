@@ -136,7 +136,7 @@ const { columns, columnChecks, data, loading, getData } = useTable({
       width: 230,
       render: row => (
         <div class="flex-center justify-end gap-8px">
-          {row.type === 'D' && (
+          {row.type !== 'B' && (
             <NButton type="primary" ghost size="small" onClick={() => handleAddChildResource(row)}>
               {$t('page.system.resource.addChildResource')}
             </NButton>

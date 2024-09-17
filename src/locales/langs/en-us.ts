@@ -8,6 +8,7 @@ const local: App.I18n.Schema = {
   },
   common: {
     action: 'Action',
+    preview: 'Preview',
     add: 'Add',
     addSuccess: 'Add Success',
     backToHome: 'Back to home',
@@ -157,9 +158,12 @@ const local: App.I18n.Schema = {
     home: 'Home',
     system: 'System Manage',
     user: 'User Manage',
-    'user-detail': 'User Detail',
     role: 'Role Manage',
-    resource: 'Resource Manage'
+    resource: 'Resource Manage',
+    data: 'Data Manage',
+    table: 'Table Manage',
+    'table-item': 'Table Item',
+    'data-item': 'Data Item'
   },
   page: {
     login: {
@@ -331,6 +335,53 @@ const local: App.I18n.Schema = {
           iconify: 'Iconify Icon',
           local: 'Local Icon'
         }
+      }
+    },
+    data: {
+      common: {
+        status: {
+          enable: 'Enable',
+          disable: 'Disable'
+        }
+      },
+      module: {
+        name: 'module name',
+        code: 'module code',
+        path: 'module path',
+        status: 'module status',
+        remark: 'module remark',
+        form: {
+          name: 'Please enter module name',
+          code: 'Please enter module code',
+          path: 'Please enter module path',
+          status: 'Please select module status',
+          remark: 'Please enter module remark'
+        }
+      },
+      table: {
+        title: 'Business Table List',
+        name: 'Table Name',
+        comment: 'Table Comment',
+        status: 'Table Status',
+        remark: 'Table Remark',
+        tableImport: 'Table Import',
+        moduleInfo: 'Module Info',
+        tableInfo: 'Table Info',
+        columnInfo: 'Column Info',
+        form: {
+          name: 'Please enter table name',
+          comment: 'Please enter table comment',
+          status: 'Please select table status',
+          remark: 'Please enter table remark',
+          tableImport: 'Please select table to import'
+        }
+      },
+      column: {
+        name: 'column nane',
+        comment: 'column comment',
+        pk: 'is pk',
+        form: 'is form',
+        visible: 'is visible'
       }
     }
   },

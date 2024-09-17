@@ -92,7 +92,7 @@ declare namespace Api {
       /** role code */
       code: string;
       /** role description */
-      remark: string;
+      remark?: string;
     }>;
 
     /** role search params */
@@ -186,5 +186,66 @@ declare namespace Api {
       children?: Resource[] | null;
     }> &
       ResourcePropsOfRoute;
+  }
+
+  /**
+   * namespace Data
+   */
+  namespace Data {
+    type CommonSearchParams = Pick<Common.PaginatingCommonParams, 'page' | 'size'>;
+
+    /** table */
+    type Table = Common.CommonRecord<{
+      /** table name */
+      name: string;
+      /** table comment */
+      comment?: string;
+      /** table remark */
+      remark?: string;
+    }>;
+
+    /** table search params */
+    type TableSearchParams = CommonType.RecordNullable<
+      Pick<Api.Data.Table, 'name' | 'comment' | 'status'> & CommonSearchParams
+    >;
+
+    /** table list */
+    type TableList = Common.PaginatingQueryRecord<Table>;
+
+    /** column */
+    type Column = Common.CommonRecord<{
+      /** table id */
+      tableId: number | null;
+      /** column name */
+      name: string;
+      /** column comment */
+      comment: string;
+      /** is pk */
+      pk: string;
+      /** is form */
+      form: string;
+      /** is visible */
+      visible: string;
+      /** column order */
+      order: number;
+    }>;
+
+    /** module */
+    type Module = Common.CommonRecord<{
+      /** table id */
+      tableId: number | null;
+      /** module name */
+      name: string;
+      /** module code */
+      code: string;
+      /** module path */
+      path: string;
+      /** module remark */
+      remark: string;
+      /** table */
+      table: Table,
+      /** columns */
+      columns: Column[]
+    }>;
   }
 }

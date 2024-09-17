@@ -8,6 +8,7 @@ const local: App.I18n.Schema = {
   },
   common: {
     action: '操作',
+    preview: '预览',
     add: '新增',
     addSuccess: '添加成功',
     backToHome: '返回首页',
@@ -157,9 +158,12 @@ const local: App.I18n.Schema = {
     home: '首页',
     system: '系统管理',
     user: '用户管理',
-    'user-detail': '用户详情',
     role: '角色管理',
-    resource: '菜单管理'
+    resource: '菜单管理',
+    data: '数据管理',
+    table: '表管理',
+    'table-item': '表详情',
+    'data-item': '数据详情'
   },
   page: {
     login: {
@@ -331,6 +335,53 @@ const local: App.I18n.Schema = {
           iconify: 'iconify图标',
           local: '本地图标'
         }
+      }
+    },
+    data: {
+      common: {
+        status: {
+          enable: '启用',
+          disable: '禁用'
+        }
+      },
+      module: {
+        name: '模块名称',
+        code: '模块代码',
+        path: '模块路径',
+        status: '模块状态',
+        remark: '模块描述',
+        form: {
+          name: '请输入模块名称',
+          code: '请输入模块代码',
+          path: '请输入模块路径',
+          status: '请选择模块状态',
+          remark: '请输入模块描述'
+        }
+      },
+      table: {
+        title: '业务表列表',
+        name: '表名称',
+        comment: '表描述',
+        status: '表状态',
+        remark: '表备注',
+        tableImport: '导入表',
+        moduleInfo: '模块信息',
+        tableInfo: '表信息',
+        columnInfo: '字段信息',
+        form: {
+          name: '请输入表名称',
+          comment: '请输入表描述',
+          status: '请选择表状态',
+          remark: '请输入表备注',
+          tableImport: '请选择要导入的表'
+        }
+      },
+      column: {
+        name: '字段名称',
+        comment: '字段描述',
+        pk: '主键',
+        form: '编辑',
+        visible: '列表'
       }
     }
   },
