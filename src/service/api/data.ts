@@ -12,7 +12,7 @@ export function fetchGetTableList(params?: Api.Data.TableSearchParams) {
 }
 
 /** update module */
-export function fetchUpdateModuleInfo(data?: Api.Data.Module) {
+export function fetchUpdateModuleInfo(data: Api.Data.Module) {
   return request<void>({
     url: '/data/table',
     method: 'put',
@@ -56,6 +56,20 @@ export function fetchImportTable(tables: string[]) {
     }, {
       arrayFormat: 'repeat'
     }),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+}
+
+/** register */
+export function fetchRegisterTable(id: number) {
+  return request<void>({
+    url: '/data/table/register',
+    method: 'post',
+    data: {
+      id
+    },
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }

@@ -1,6 +1,6 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
-import { fetchGetTableList, fetchRemoveTable } from '@/service/api';
+import { fetchGetTableList, fetchRemoveTable, fetchRegisterTable } from '@/service/api';
 import { $t } from '@/locales';
 import { useAppStore } from '@/stores/modules/app';
 import { enableStatusRecord } from '@/constants/business';
@@ -84,11 +84,14 @@ const {
       key: 'operate',
       title: $t('common.operate'),
       align: 'center',
-      width: 180,
+      width: 240,
       render: row => (
         <div class="flex-center gap-8px">
-          <NButton ghost size="small" onClick={() => preview(row.id)}>
+          <NButton type="success" ghost size="small" onClick={() => preview(row.id)}>
             {$t('common.preview')}
+          </NButton>
+          <NButton type="warning" ghost size="small" onClick={() => register(row.id)}>
+            {$t('common.register')}
           </NButton>
           <NButton type="primary" ghost size="small" onClick={() => edit(row.id)}>
             {$t('common.edit')}
@@ -149,6 +152,16 @@ function preview(id: number) {
       id: String(id)
     }
   })
+}
+
+async function register(id: number) {
+  // request
+  const { error, _ } = await fetchRegisterTable(id)
+  if (error) {
+    return;
+  }
+
+  window.$message?.success($t('common.updateSuccess'));
 }
 </script>
 

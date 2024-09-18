@@ -9,6 +9,7 @@ const local: App.I18n.Schema = {
   common: {
     action: 'Action',
     preview: 'Preview',
+    register: 'Register',
     add: 'Add',
     addSuccess: 'Add Success',
     backToHome: 'Back to home',
@@ -45,6 +46,7 @@ const local: App.I18n.Schema = {
     update: 'Update',
     updateSuccess: 'Update Success',
     userCenter: 'User Center',
+    enter: 'Please enter ',
     yesOrNo: {
       yes: 'Yes',
       no: 'No'

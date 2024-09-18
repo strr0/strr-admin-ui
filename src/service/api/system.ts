@@ -20,7 +20,7 @@ export function fetchGetAllRoles() {
 }
 
 /** save role */
-export function fetchSaveRole(data?: Api.System.Role) {
+export function fetchSaveRole(data: Api.System.Role) {
   return request<void>({
     url: '/system/role',
     method: 'post',
@@ -29,7 +29,7 @@ export function fetchSaveRole(data?: Api.System.Role) {
 }
 
 /** update role */
-export function fetchUpdateRole(data?: Api.System.Role) {
+export function fetchUpdateRole(data: Api.System.Role) {
   return request<void>({
     url: '/system/role',
     method: 'put',
@@ -84,7 +84,7 @@ export function fetchGetUserList(params?: Api.System.UserSearchParams) {
 }
 
 /** save user */
-export function fetchSaveUser(data?: Api.System.User) {
+export function fetchSaveUser(data: Api.System.User) {
   return request<void>({
     url: '/system/user',
     method: 'post',
@@ -120,7 +120,7 @@ export function fetchGetResourceTree() {
 }
 
 /** save resource */
-export function fetchSaveResource(data?: Api.System.Resource) {
+export function fetchSaveResource(data: Api.System.Resource) {
   return request<void>({
     url: '/system/resource',
     method: 'post',
@@ -129,7 +129,7 @@ export function fetchSaveResource(data?: Api.System.Resource) {
 }
 
 /** update resource */
-export function fetchUpdateResource(data?: Api.System.Resource) {
+export function fetchUpdateResource(data: Api.System.Resource) {
   return request<void>({
     url: '/system/resource',
     method: 'put',

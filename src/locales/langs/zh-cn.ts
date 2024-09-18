@@ -9,6 +9,7 @@ const local: App.I18n.Schema = {
   common: {
     action: '操作',
     preview: '预览',
+    register: '注册',
     add: '新增',
     addSuccess: '添加成功',
     backToHome: '返回首页',
@@ -45,6 +46,7 @@ const local: App.I18n.Schema = {
     update: '更新',
     updateSuccess: '更新成功',
     userCenter: '个人中心',
+    enter: '请输入',
     yesOrNo: {
       yes: '是',
       no: '否'

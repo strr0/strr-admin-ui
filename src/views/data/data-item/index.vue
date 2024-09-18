@@ -1,7 +1,10 @@
-<script setup lang="tsx">
-import { defineComponent, h, ref } from 'vue'
+<script setup lang="ts">
+import { defineAsyncComponent, h } from 'vue';
 import { $t } from '@/locales';
 import { fetchGetModule } from '@/service/api';
+import NotFound from '@/views/_builtin/404/index.vue';
+import ServerError from '@/views/_builtin/500/index.vue'
+import ModelTemplate from './modules/model-template.vue';
 
 interface Props {
   id: string;
@@ -9,32 +12,31 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const ModelTemplate = defineComponent({
-  name: 'ModelTemplate',
-  setup() {
+const CustomModelTemplate = defineAsyncComponent({
+  loader: async () => {
     if (!props.id) {
-      return () => (
-        <div>Id is empty!</div>
-      )
+      return () => h(NotFound)
     }
     // request
-    const { error, data } = fetchGetModule(props.id)
+    const { error, data } = await fetchGetModule(props.id)
 
     if (error) {
-      return () => (
-        <div>Fetch data error</div>
-      )
+      return () => h(ServerError)
     }
 
-    return () => (
-      <div>Hello world</div>
-    )
+    if (!data) {
+      return () => h(NotFound)
+    }
+
+    return () => h(ModelTemplate, {
+      model: data
+    })
   }
 });
 </script>
 
 <template>
-  <ModelTemplate />
+  <CustomModelTemplate />
 </template>
 
 <style scoped></style>
