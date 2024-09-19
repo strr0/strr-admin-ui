@@ -6,8 +6,7 @@ export function fetchGetModuleList(params?: Api.Data.ModuleSearchParams) {
   return request<Api.Data.ModuleList>({
     url: '/data/module/page',
     method: 'get',
-    params,
-    result: true
+    params
   });
 }
 
@@ -41,8 +40,7 @@ export function fetchGetDbTableList(params?: Api.Data.TableSearchParams) {
   return request<Api.Data.TableList>({
     url: '/data/module/db/page',
     method: 'get',
-    params,
-    result: true
+    params
   });
 }
 

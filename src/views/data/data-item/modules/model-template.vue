@@ -39,8 +39,7 @@ const {
   apiFn: (params: any) => request<Api.Common.PaginatingQueryRecord<any>>({
     url: `/data/${modulePath}/page`,
     method: 'get',
-    params,
-    result: true
+    params
   }),
   apiParams: {
     page: 1,

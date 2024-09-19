@@ -6,8 +6,7 @@ export function fetchGetRoleList(params?: Api.System.RoleSearchParams) {
   return request<Api.System.RoleList>({
     url: '/system/role/page',
     method: 'get',
-    params,
-    result: true
+    params
   });
 }
 
@@ -78,8 +77,7 @@ export function fetchGetUserList(params?: Api.System.UserSearchParams) {
   return request<Api.System.UserList>({
     url: '/system/user/page',
     method: 'get',
-    params,
-    result: true
+    params
   });
 }
 
