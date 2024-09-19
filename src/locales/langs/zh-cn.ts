@@ -163,8 +163,8 @@ const local: App.I18n.Schema = {
     role: '角色管理',
     resource: '菜单管理',
     data: '数据管理',
-    table: '表管理',
-    'table-item': '表详情',
+    module: '模块管理',
+    'module-item': '模块详情',
     'data-item': '数据详情'
   },
   page: {
@@ -347,6 +347,7 @@ const local: App.I18n.Schema = {
         }
       },
       module: {
+        title: '模块列表',
         name: '模块名称',
         code: '模块代码',
         path: '模块路径',

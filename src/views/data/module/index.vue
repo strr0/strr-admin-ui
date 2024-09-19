@@ -1,13 +1,13 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
-import { fetchGetTableList, fetchRemoveTable, fetchRegisterTable } from '@/service/api';
+import { fetchGetModuleList, fetchRemoveModule, fetchRegisterModule } from '@/service/api';
 import { $t } from '@/locales';
 import { useAppStore } from '@/stores/modules/app';
 import { enableStatusRecord } from '@/constants/business';
 import { useBoolean } from '@/hooks/common';
 import { useRouterPush } from '@/hooks/modules/router'
 import { useTable, useTableOperate } from '@/hooks/modules/table';
-import TableSearch from './modules/table-search.vue';
+import ModuleSearch from './modules/module-search.vue';
 import TableImportModal from './modules/table-import-modal.vue';
 
 const appStore = useAppStore();
@@ -25,7 +25,7 @@ const {
   searchParams,
   resetSearchParams
 } = useTable({
-  apiFn: fetchGetTableList,
+  apiFn: fetchGetModuleList,
   showTotal: true,
   apiParams: {
     page: 1,
@@ -33,7 +33,8 @@ const {
     // if you want to use the searchParams in Form, you need to define the following properties, and the value is null
     // the value can not be undefined, otherwise the property in Form will not be reactive
     name: null,
-    comment: null,
+    code: null,
+    path: null,
     status: null
   },
   columns: () => [
@@ -50,19 +51,25 @@ const {
     },
     {
       key: 'name',
-      title: $t('page.data.table.name'),
+      title: $t('page.data.module.name'),
       align: 'center',
       minWidth: 100
     },
     {
-      key: 'comment',
-      title: $t('page.data.table.comment'),
+      key: 'code',
+      title: $t('page.data.module.code'),
+      align: 'center',
+      minWidth: 100
+    },
+    {
+      key: 'path',
+      title: $t('page.data.module.path'),
       align: 'center',
       minWidth: 100
     },
     {
       key: 'status',
-      title: $t('page.data.table.status'),
+      title: $t('page.data.module.status'),
       align: 'center',
       width: 100,
       render: row => {
@@ -96,7 +103,7 @@ const {
           <NButton type="primary" ghost size="small" onClick={() => edit(row.id)}>
             {$t('common.edit')}
           </NButton>
-          <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
+          <NPopconfirm onPositiveClick={() => handleDelete(row.tableId)}>
             {{
               default: () => $t('common.confirmDelete'),
               trigger: () => (
@@ -128,9 +135,9 @@ async function handleBatchDelete() {
   onBatchDeleted();
 }
 
-async function handleDelete(id: number) {
+async function handleDelete(tableId: number) {
   // request
-  const { error, _ } = await fetchRemoveTable(id)
+  const { error, _ } = await fetchRemoveModule(tableId)
   if (error) {
     return;
   }
@@ -139,7 +146,7 @@ async function handleDelete(id: number) {
 }
 
 function edit(id: number) {
-  routerPushByKey('tableItem', {
+  routerPushByKey('moduleItem', {
     params: {
       id: String(id)
     }
@@ -156,7 +163,7 @@ function preview(id: number) {
 
 async function register(id: number) {
   // request
-  const { error, _ } = await fetchRegisterTable(id)
+  const { error, _ } = await fetchRegisterModule(id)
   if (error) {
     return;
   }
@@ -167,8 +174,8 @@ async function register(id: number) {
 
 <template>
   <div class="min-h-500px flex-col-stretch gap-16px overflow-hidden lt-sm:overflow-auto">
-    <TableSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getDataByPage" />
-    <NCard :title="$t('page.data.table.title')" :bordered="false" size="small" class="sm:flex-1-hidden card-wrapper">
+    <ModuleSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getDataByPage" />
+    <NCard :title="$t('page.data.module.title')" :bordered="false" size="small" class="sm:flex-1-hidden card-wrapper">
       <template #header-extra>
         <TableHeaderOperation
           v-model:columns="columnChecks"

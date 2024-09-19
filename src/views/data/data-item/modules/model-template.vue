@@ -13,7 +13,7 @@ defineOptions({
 
 interface Props {
   /** the edit row data */
-  model: Api.Data.Module;
+  model: Api.Data.ModuleInfo;
 }
 
 const props = defineProps<Props>();

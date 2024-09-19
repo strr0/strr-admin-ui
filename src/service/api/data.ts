@@ -2,9 +2,9 @@ import { request } from '../request';
 import { stringify } from 'qs';
 
 /** get table list */
-export function fetchGetTableList(params?: Api.Data.TableSearchParams) {
-  return request<Api.Data.TableList>({
-    url: '/data/table/page',
+export function fetchGetModuleList(params?: Api.Data.ModuleSearchParams) {
+  return request<Api.Data.ModuleList>({
+    url: '/data/module/page',
     method: 'get',
     params,
     result: true
@@ -14,7 +14,7 @@ export function fetchGetTableList(params?: Api.Data.TableSearchParams) {
 /** update module */
 export function fetchUpdateModuleInfo(data: Api.Data.Module) {
   return request<void>({
-    url: '/data/table',
+    url: '/data/module',
     method: 'put',
     data
   });
@@ -23,15 +23,15 @@ export function fetchUpdateModuleInfo(data: Api.Data.Module) {
 /** get module */
 export function fetchGetModule(id: number) {
   return request<void>({
-    url: '/data/table/' + id,
+    url: '/data/module/' + id,
     method: 'get'
   });
 }
 
 /** remove table */
-export function fetchRemoveTable(id: number) {
+export function fetchRemoveModule(tableId: number) {
   return request<void>({
-    url: '/data/table/' + id,
+    url: '/data/module/' + tableId,
     method: 'delete'
   });
 }
@@ -39,7 +39,7 @@ export function fetchRemoveTable(id: number) {
 /** get db table list */
 export function fetchGetDbTableList(params?: Api.Data.TableSearchParams) {
   return request<Api.Data.TableList>({
-    url: '/data/table/db/page',
+    url: '/data/module/db/page',
     method: 'get',
     params,
     result: true
@@ -49,7 +49,7 @@ export function fetchGetDbTableList(params?: Api.Data.TableSearchParams) {
 /** import table */
 export function fetchImportTable(tables: string[]) {
   return request<void>({
-    url: '/data/table/import',
+    url: '/data/module/import',
     method: 'post',
     data: stringify({
       tables
@@ -63,9 +63,9 @@ export function fetchImportTable(tables: string[]) {
 }
 
 /** register */
-export function fetchRegisterTable(id: number) {
+export function fetchRegisterModule(id: number) {
   return request<void>({
-    url: '/data/table/register',
+    url: '/data/module/register',
     method: 'post',
     data: {
       id

@@ -242,10 +242,22 @@ declare namespace Api {
       path: string;
       /** module remark */
       remark: string;
+    }>;
+
+    /** module info */
+    type ModuleInfo = Module & {
       /** table */
       table: Table,
       /** columns */
       columns: Column[]
-    }>;
+    }
+
+    /** module search params */
+    type ModuleSearchParams = CommonType.RecordNullable<
+      Pick<Api.Data.Module, 'name' | 'code' | 'path' | 'status'> & CommonSearchParams
+    >;
+
+    /** table list */
+    type ModuleList = Common.PaginatingQueryRecord<Module>;
   }
 }

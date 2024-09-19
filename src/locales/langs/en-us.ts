@@ -163,8 +163,8 @@ const local: App.I18n.Schema = {
     role: 'Role Manage',
     resource: 'Resource Manage',
     data: 'Data Manage',
-    table: 'Table Manage',
-    'table-item': 'Table Item',
+    module: 'Module Manage',
+    'module-item': 'Module Item',
     'data-item': 'Data Item'
   },
   page: {
@@ -347,11 +347,12 @@ const local: App.I18n.Schema = {
         }
       },
       module: {
-        name: 'module name',
-        code: 'module code',
-        path: 'module path',
-        status: 'module status',
-        remark: 'module remark',
+        title: 'Module List',
+        name: 'Module Name',
+        code: 'Module Code',
+        path: 'Module Path',
+        status: 'Module Status',
+        remark: 'Module Remark',
         form: {
           name: 'Please enter module name',
           code: 'Please enter module code',
@@ -379,11 +380,11 @@ const local: App.I18n.Schema = {
         }
       },
       column: {
-        name: 'column nane',
-        comment: 'column comment',
-        pk: 'is pk',
-        form: 'is form',
-        visible: 'is visible'
+        name: 'Column Nane',
+        comment: 'Column Comment',
+        pk: 'Is Pk',
+        form: 'Is Form',
+        visible: 'Is Visible'
       }
     }
   },
