@@ -22,6 +22,13 @@ const moduleName = props.model.name;
 const modulePath = props.model.path;
 const tableCols = props.model.columns.filter(col => '1' === col.visible);
 const formCols = props.model.columns.filter(col => '1' === col.form);
+const tableParam = getTableParam(tableCols);
+
+function getTableParam(cols: Api.Data.Column) {
+  let param = {};
+  cols.forEach(col => param[col.name] = null)
+  return param;
+}
 
 const appStore = useAppStore();
 
@@ -42,6 +49,7 @@ const {
     params
   }),
   apiParams: {
+    ...tableParam,
     page: 1,
     size: 10
   },

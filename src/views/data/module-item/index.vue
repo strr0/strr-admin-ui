@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { $t } from '@/locales';
-import { fetchGetModule } from '@/service/api';
+import { fetchGetModule, fetchUpdateModuleInfo } from '@/service/api';
 import ModuleItemTab from './modules/module-item-tab.vue';
 import TableItemTab from './modules/table-item-tab.vue';
 import ColumnItemTab from './modules/column-item-tab.vue';
@@ -12,9 +12,13 @@ interface Props {
 
 const props = defineProps<Props>();
 
-type Model = Pick<Api.Data.Module, 'id' | 'tableId' | 'name' | 'code' | 'path' | 'remark' | 'status'> & {
-  table: Pick<Api.Data.Table, 'id' | 'name' | 'comment' | 'remark' | 'status'>,
-  columns: (Pick<Api.Data.Column, 'id' | 'tableId' | 'name' | 'comment' | 'pk' | 'form' | 'visible' | 'order' | 'status'> & { 'index': number })[]
+type ModuleModel = Pick<Api.Data.Module, 'id' | 'tableId' | 'name' | 'code' | 'path' | 'remark' | 'status'>;
+type TableModel = Pick<Api.Data.Table, 'id' | 'name' | 'comment' | 'remark' | 'status'>;
+type ColumnModel = Pick<Api.Data.Column, 'id' | 'tableId' | 'name' | 'comment' | 'pk' | 'form' | 'visible' | 'order' | 'status'> & { 'index': number };
+
+type Model = ModuleModel & {
+  table: TableModel,
+  columns: ColumnModel[]
 }
 
 const model = ref<Model>({
@@ -34,6 +38,32 @@ const model = ref<Model>({
   },
   columns: []
 });
+
+function updateModule(module: ModuleModel) {
+  Object.assign(model, module);
+}
+
+function updateTable(table: TableModel) {
+  Object.assign(model.table, table);
+}
+
+function updateColumns(columns: ColumnModel[]) {
+  Object.assign(model.columns, columns);
+}
+
+function closeTab() {
+}
+
+async function handleSubmit() {
+  // request
+  const { error, _ } = await fetchUpdateModuleInfo(model as Api.Data.ModuleInfo)
+  if (error) {
+    return;
+  }
+
+  window.$message?.success($t('common.updateSuccess'));
+  closeTab();
+}
 
 async function init() {
   if (!props.id) {
@@ -62,21 +92,21 @@ init()
     <NCard :bordered="false" size="small" class="sm:flex-1-hidden card-wrapper">
       <NTabs type="line" animated>
         <NTabPane name="moduleInfo" :tab="$t('page.data.table.moduleInfo')">
-          <ModuleItemTab v-model:model="model" />
+          <ModuleItemTab v-model:data="model" @update="updateModule" />
         </NTabPane>
         <NTabPane name="tableInfo" :tab="$t('page.data.table.tableInfo')">
-          <TableItemTab v-model:model="model.table" />
+          <TableItemTab v-model:data="model.table" @update="updateTable" />
         </NTabPane>
         <NTabPane name="columnInfo" :tab="$t('page.data.table.columnInfo')">
-          <ColumnItemTab v-model:model="model.columns" />
+          <ColumnItemTab v-model:data="model.columns" @update="updateColumns" />
         </NTabPane>
       </NTabs>
       <template #footer>
         <NSpace justify="end">
-          <NButton size="small" class="mt-16px">
+          <NButton size="small" class="mt-16px" @click="closeTab">
             {{ $t('common.cancel') }}
           </NButton>
-          <NButton type="primary" size="small" class="mt-16px">
+          <NButton type="primary" size="small" class="mt-16px" @click="handleSubmit">
             {{ $t('common.confirm') }}
           </NButton>
         </NSpace>
