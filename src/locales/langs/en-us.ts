@@ -188,11 +188,7 @@ const local: App.I18n.Schema = {
         rememberMe: 'Remember me',
         forgetPassword: 'Forget password?',
         register: 'Register',
-        otherAccountLogin: 'Other Account Login',
-        otherLoginMode: 'Other Login Mode',
-        superAdmin: 'Super Admin',
-        admin: 'Admin',
-        user: 'User'
+        otherLoginMode: 'Other Login Mode'
       },
       codeLogin: {
         title: 'Verification Code Login',

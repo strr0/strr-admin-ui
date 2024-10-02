@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AddOperation: typeof import('./../components/advanced/operation/add-operation.vue')['default']
     AdminLayout: typeof import('./../components/materials/libs/admin-layout/index.vue')['default']
     AppProvider: typeof import('./../components/common/app-provider.vue')['default']
     BetterScroll: typeof import('./../components/custom/better-scroll.vue')['default']
@@ -16,6 +17,7 @@ declare module 'vue' {
     ChromeTabBg: typeof import('./../components/materials/libs/page-tab/chrome-tab-bg.vue')['default']
     CountTo: typeof import('./../components/custom/count-to.vue')['default']
     DarkModeContainer: typeof import('./../components/common/dark-mode-container.vue')['default']
+    DeleteOperation: typeof import('./../components/advanced/operation/delete-operation.vue')['default']
     ExceptionBase: typeof import('./../components/common/exception-base.vue')['default']
     FullScreen: typeof import('./../components/common/full-screen.vue')['default']
     IconAntDesignEnterOutlined: typeof import('~icons/ant-design/enter-outlined')['default']
@@ -94,6 +96,7 @@ declare module 'vue' {
     NWatermark: typeof import('naive-ui')['NWatermark']
     PageTab: typeof import('./../components/materials/libs/page-tab/index.vue')['default']
     PinToggler: typeof import('./../components/common/pin-toggler.vue')['default']
+    RefreshOperation: typeof import('./../components/advanced/operation/refresh-operation.vue')['default']
     ReloadButton: typeof import('./../components/common/reload-button.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

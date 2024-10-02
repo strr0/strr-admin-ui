@@ -137,23 +137,25 @@ const { columns, columnChecks, data, loading, getData } = useTable({
       render: row => (
         <div class="flex-center justify-end gap-8px">
           {row.type !== 'B' && (
-            <NButton type="primary" ghost size="small" onClick={() => handleAddChildResource(row)}>
+            <NButton v-perms="system:resource:save" type="primary" ghost size="small" onClick={() => handleAddChildResource(row)}>
               {$t('page.system.resource.addChildResource')}
             </NButton>
           )}
-          <NButton type="primary" ghost size="small" onClick={() => handleEdit(row)}>
+          <NButton v-perms="system:resource:update" type="primary" ghost size="small" onClick={() => handleEdit(row)}>
             {$t('common.edit')}
           </NButton>
-          <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
-            {{
-              default: () => $t('common.confirmDelete'),
-              trigger: () => (
-                <NButton type="error" ghost size="small">
-                  {$t('common.delete')}
-                </NButton>
-              )
-            }}
-          </NPopconfirm>
+          <div v-perms="system:resource:remove">
+            <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
+              {{
+                default: () => $t('common.confirmDelete'),
+                trigger: () => (
+                  <NButton type="error" ghost size="small">
+                    {$t('common.delete')}
+                  </NButton>
+                )
+              }}
+            </NPopconfirm>
+          </div>
         </div>
       )
     }
@@ -210,14 +212,12 @@ function handleAddChildResource(item: Api.System.Resource) {
   <div ref="wrapperRef" class="flex-col-stretch gap-16px overflow-hidden lt-sm:overflow-auto">
     <NCard :title="$t('page.system.resource.title')" :bordered="false" size="small" class="sm:flex-1-hidden card-wrapper">
       <template #header-extra>
-        <TableHeaderOperation
-          v-model:columns="columnChecks"
-          :disabled-delete="checkedRowKeys.length === 0"
-          :loading="loading"
-          @add="handleAdd"
-          @delete="handleBatchDelete"
-          @refresh="getData"
-        />
+        <TableHeaderOperation>
+          <AddOperation v-perms="'system:resource:save'" @add="handleAdd" />
+          <DeleteOperation v-perms="'system:resource:remove'" :disabled-delete="checkedRowKeys.length === 0" @delete="handleBatchDelete" />
+          <RefreshOperation :loading="loading" @refresh="getData" />
+          <TableColumnSetting v-model:columns="columnChecks" />
+        </TableHeaderOperation>
       </template>
       <NDataTable
         :columns="columns"

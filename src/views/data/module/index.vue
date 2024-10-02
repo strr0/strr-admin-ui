@@ -97,22 +97,24 @@ const {
           <NButton type="success" ghost size="small" onClick={() => preview(row.id)}>
             {$t('common.preview')}
           </NButton>
-          <NButton type="warning" ghost size="small" onClick={() => register(row.id)}>
+          <NButton v-perms="data:module:register" type="warning" ghost size="small" onClick={() => register(row.id)}>
             {$t('common.register')}
           </NButton>
-          <NButton type="primary" ghost size="small" onClick={() => edit(row.id)}>
+          <NButton v-perms="data:module:update" type="primary" ghost size="small" onClick={() => edit(row.id)}>
             {$t('common.edit')}
           </NButton>
-          <NPopconfirm onPositiveClick={() => handleDelete(row.tableId)}>
-            {{
-              default: () => $t('common.confirmDelete'),
-              trigger: () => (
-                <NButton type="error" ghost size="small">
-                  {$t('common.delete')}
-                </NButton>
-              )
-            }}
-          </NPopconfirm>
+          <div v-perms="data:module:remove">
+            <NPopconfirm onPositiveClick={() => handleDelete(row.tableId)}>
+              {{
+                default: () => $t('common.confirmDelete'),
+                trigger: () => (
+                  <NButton type="error" ghost size="small">
+                    {$t('common.delete')}
+                  </NButton>
+                )
+              }}
+            </NPopconfirm>
+          </div>
         </div>
       )
     }
@@ -177,14 +179,12 @@ async function register(id: number) {
     <ModuleSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getDataByPage" />
     <NCard :title="$t('page.data.module.title')" :bordered="false" size="small" class="sm:flex-1-hidden card-wrapper">
       <template #header-extra>
-        <TableHeaderOperation
-          v-model:columns="columnChecks"
-          :disabled-delete="checkedRowKeys.length === 0"
-          :loading="loading"
-          @add="openTableImportModal"
-          @delete="handleBatchDelete"
-          @refresh="getData"
-        />
+        <TableHeaderOperation>
+          <AddOperation v-perms="'data:module:import'" @add="openTableImportModal" />
+          <DeleteOperation v-perms="'data:module:remove'" :disabled-delete="checkedRowKeys.length === 0" @delete="handleBatchDelete" />
+          <RefreshOperation :loading="loading" @refresh="getData" />
+          <TableColumnSetting v-model:columns="columnChecks" />
+        </TableHeaderOperation>
       </template>
       <NDataTable
         v-model:checked-row-keys="checkedRowKeys"

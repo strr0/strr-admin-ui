@@ -141,14 +141,12 @@ function edit(id: number) {
     <ModelSearch v-model:tableCols="tableCols" v-model:model="searchParams" @reset="resetSearchParams" @search="getDataByPage" />
     <NCard :title="$t('page.system.role.title')" :bordered="false" size="small" class="sm:flex-1-hidden card-wrapper">
       <template #header-extra>
-        <TableHeaderOperation
-          v-model:columns="columnChecks"
-          :disabled-delete="checkedRowKeys.length === 0"
-          :loading="loading"
-          @add="handleAdd"
-          @delete="handleBatchDelete"
-          @refresh="getData"
-        />
+        <TableHeaderOperation>
+          <AddOperation @add="handleAdd" />
+          <DeleteOperation :disabled-delete="checkedRowKeys.length === 0" @delete="handleBatchDelete" />
+          <RefreshOperation :loading="loading" @refresh="getData" />
+          <TableColumnSetting v-model:columns="columnChecks" />
+        </TableHeaderOperation>
       </template>
       <NDataTable
         v-model:checked-row-keys="checkedRowKeys"

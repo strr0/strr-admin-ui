@@ -59,8 +59,6 @@ declare namespace Env {
      * use "," to separate multiple codes
      */
     readonly VITE_SERVICE_EXPIRED_TOKEN_CODES: string;
-    /** when the route mode is static, the defined super role */
-    readonly VITE_STATIC_SUPER_ROLE: string;
     /**
      * other backend service base url
      *
@@ -73,13 +71,6 @@ declare namespace Env {
      * Only valid in the development environment
      */
     readonly VITE_HTTP_PROXY?: CommonType.YesOrNo;
-    /**
-     * The auth route mode
-     *
-     * - Static: the auth routes is generated in front-end
-     * - Dynamic: the auth routes is generated in back-end
-     */
-    readonly VITE_AUTH_ROUTE_MODE: 'static' | 'dynamic';
     /**
      * The home route key
      *

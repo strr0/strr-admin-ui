@@ -5,17 +5,27 @@
  */
 declare namespace Api {
   namespace Common {
-    /** common params of paginating */
+    /**
+     * common params of paginating
+     */
     interface PaginatingCommonParams {
-      /** current page number */
+      /**
+       * current page number
+       */
       page: number;
-      /** page size */
+      /**
+       * page size
+       */
       size: number;
-      /** total count */
+      /**
+       * total count
+       */
       total: number;
     }
 
-    /** common params of paginating query list data */
+    /**
+     * common params of paginating query list data
+     */
     interface PaginatingQueryRecord<T = any> extends PaginatingCommonParams {
       content: T[];
     }
@@ -28,19 +38,33 @@ declare namespace Api {
      */
     type EnableStatus = '1' | '0';
 
-    /** common record */
+    /**
+     * common record
+     */
     type CommonRecord<T = any> = {
-      /** record id */
+      /**
+       * record id
+       */
       id: number | null;
-      /** record creator */
+      /**
+       * record creator
+       */
       createBy: string;
-      /** record create time */
+      /**
+       * record create time
+       */
       createTime: string;
-      /** record updater */
+      /**
+       * record updater
+       */
       updateBy: string;
-      /** record update time */
+      /**
+       * record update time
+       */
       updateTime: string;
-      /** record status */
+      /**
+       * record status
+       */
       status: EnableStatus | null;
     } & T;
   }
@@ -56,11 +80,22 @@ declare namespace Api {
       refreshToken: string;
     }
 
+    /**
+     * user info
+     */
     interface UserInfo {
+      /**
+       * user id
+       */
       userId: string;
+      /**
+       * username
+       */
       username: string;
-      roles: string[];
-      buttons: string[];
+      /**
+       * perms
+       */
+      perms: string[];
     }
   }
 
@@ -85,52 +120,86 @@ declare namespace Api {
   namespace System {
     type CommonSearchParams = Pick<Common.PaginatingCommonParams, 'page' | 'size'>;
 
-    /** role */
+    /**
+     * role
+     */
     type Role = Common.CommonRecord<{
-      /** role name */
+      /**
+       * role name
+       */
       name: string;
-      /** role code */
+      /**
+       * role code
+       */
       code: string;
-      /** role description */
+      /**
+       * role description
+       */
       remark?: string;
     }>;
 
-    /** role search params */
+    /**
+     * role search params
+     */
     type RoleSearchParams = CommonType.RecordNullable<
       Pick<Api.System.Role, 'name' | 'code' | 'status'> & CommonSearchParams
     >;
 
-    /** role list */
+    /**
+     * role list
+     */
     type RoleList = Common.PaginatingQueryRecord<Role>;
 
-    /** all role */
+    /**
+     * all role
+     */
     type AllRole = Pick<Role, 'id' | 'name' | 'code'>;
 
-    /** user */
+    /**
+     * user
+     */
     type User = Common.CommonRecord<{
-      /** user name */
+      /**
+       * user name
+       */
       username: string;
-      /** user nick name */
+      /**
+       * user nick name
+       */
       nickname: string;
-      /** user phone */
+      /**
+       * user phone
+       */
       phone: string;
-      /** user email */
+      /**
+       * user email
+       */
       email: string;
-      /** avatar */
+      /**
+       * avatar
+       */
       avatar?: string;
-      /** remark */
+      /**
+       * remark
+       */
       remark?: string;
-      /** user role code collection */
+      /**
+       * user role code collection
+       */
       roleIds: string[];
     }>;
 
-    /** user search params */
+    /**
+     * user search params
+     */
     type UserSearchParams = CommonType.RecordNullable<
       Pick<Api.System.User, 'username' | 'nickname' | 'phone' | 'email' | 'status'> &
         CommonSearchParams
     >;
 
-    /** user list */
+    /**
+     * user list
+     */
     type UserList = Common.PaginatingQueryRecord<User>;
 
     /**
@@ -158,31 +227,57 @@ declare namespace Api {
     >;
 
     type Resource = Common.CommonRecord<{
-      /** parent menu id */
+      /**
+       * parent resource id
+       */
       parentId: number;
-      /** resource type */
+      /**
+       * resource type
+       */
       type: ResourceType;
-      /** resource name */
+      /**
+       * resource name
+       */
       name: string;
-      /** route path */
+      /**
+       * route path
+       */
       path: string;
-      /** component */
+      /**
+       * component
+       */
       component?: string;
-      /** is frame */
+      /**
+       * is frame
+       */
       frame: string;
-      /** is cache */
+      /**
+       * is cache
+       */
       cache: string;
-      /** iconify icon name or local icon name */
+      /**
+       * iconify icon name or local icon name
+       */
       icon: string;
-      /** icon type */
+      /**
+       * icon type
+       */
       iconType: IconType;
-      /** is visible */
+      /**
+       * is visible
+       */
       visible: string;
-      /** permissions */
+      /**
+       * permissions
+       */
       perms?: string;
-      /** remark */
+      /**
+       * remark
+       */
       remark?: string;
-      /** children menu */
+      /**
+       * children resource
+       */
       children?: Resource[] | null;
     }> &
       ResourcePropsOfRoute;
@@ -194,70 +289,120 @@ declare namespace Api {
   namespace Data {
     type CommonSearchParams = Pick<Common.PaginatingCommonParams, 'page' | 'size'>;
 
-    /** table */
+    /**
+     * table
+     */
     type Table = Common.CommonRecord<{
-      /** table name */
+      /**
+       * table name
+       */
       name: string;
-      /** table comment */
+      /**
+       * table comment
+       */
       comment?: string;
-      /** table remark */
+      /**
+       * table remark
+       */
       remark?: string;
     }>;
 
-    /** table search params */
+    /**
+     * table search params
+     */
     type TableSearchParams = CommonType.RecordNullable<
       Pick<Api.Data.Table, 'name' | 'comment' | 'status'> & CommonSearchParams
     >;
 
-    /** table list */
+    /**
+     * table list
+     */
     type TableList = Common.PaginatingQueryRecord<Table>;
 
-    /** column */
+    /**
+     * column
+     */
     type Column = Common.CommonRecord<{
-      /** table id */
+      /**
+       * table id
+       */
       tableId: number | null;
-      /** column name */
+      /**
+       * column name
+       */
       name: string;
-      /** column comment */
+      /**
+       * column comment
+       */
       comment: string;
-      /** is pk */
+      /**
+       * is pk
+       */
       pk: string;
-      /** is form */
+      /**
+       * is form
+       */
       form: string;
-      /** is visible */
+      /**
+       * is visible
+       */
       visible: string;
-      /** column order */
+      /**
+       * column order
+       */
       order: number;
     }>;
 
-    /** module */
+    /**
+     * module
+     */
     type Module = Common.CommonRecord<{
-      /** table id */
+      /**
+       * table id
+       */
       tableId: number | null;
-      /** module name */
+      /**
+       * module name
+       */
       name: string;
-      /** module code */
+      /**
+       * module code
+       */
       code: string;
-      /** module path */
+      /**
+       * module path
+       */
       path: string;
-      /** module remark */
+      /**
+       * module remark
+       */
       remark: string;
     }>;
 
-    /** module info */
+    /**
+     * module info
+     */
     type ModuleInfo = Module & {
-      /** table */
+      /**
+       * table
+       */
       table: Table,
-      /** columns */
+      /**
+       * columns
+       */
       columns: Column[]
     }
 
-    /** module search params */
+    /**
+     * module search params
+     */
     type ModuleSearchParams = CommonType.RecordNullable<
       Pick<Api.Data.Module, 'name' | 'code' | 'path' | 'status'> & CommonSearchParams
     >;
 
-    /** table list */
+    /**
+     * table list
+     */
     type ModuleList = Common.PaginatingQueryRecord<Module>;
   }
 }

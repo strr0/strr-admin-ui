@@ -8,9 +8,13 @@ declare module 'vue-router' {
      * It can be used in document title
      */
     title: string;
-    /** Type of the route */
+    /** 
+     * Type of the route
+     */
     type?: string;
-    /** Is single menu */
+    /**
+     * Is single menu
+     */
     single?: boolean | null;
     /**
      * I18n key of the route
@@ -19,14 +23,12 @@ declare module 'vue-router' {
      */
     i18nKey?: App.I18n.I18nKey | null;
     /**
-     * Roles of the route
-     *
-     * Route can be accessed if the current user has at least one of the roles
-     *
-     * It only works when the route mode is "static", if the route mode is "dynamic", it will be ignored
+     * Perms of the route
      */
-    roles?: string[];
-    /** Whether to cache the route */
+    perms?: string;
+    /**
+     * Whether to cache the route
+     */
     keepAlive?: boolean | null;
     /**
      * Is constant route
@@ -46,13 +48,21 @@ declare module 'vue-router' {
      * In "src/assets/svg-icon", if it is set, the icon will be ignored
      */
     localIcon?: string;
-    /** Icon size. width and height are the same. */
+    /**
+     * Icon size. width and height are the same.
+     */
     iconFontSize?: number;
-    /** Router order */
+    /**
+     * Router order
+     */
     order?: number | null;
-    /** The outer link of the route */
+    /**
+     * The outer link of the route
+     */
     href?: string | null;
-    /** Whether to hide the route in the menu */
+    /**
+     * Whether to hide the route in the menu
+     */
     hideInMenu?: boolean | null;
     /**
      * The menu key will be activated when entering the route
@@ -68,9 +78,13 @@ declare module 'vue-router' {
      * different query will use different tabs
      */
     multiTab?: boolean | null;
-    /** If set, the route will be fixed in tabs, and the value is the order of fixed tabs */
+    /**
+     * If set, the route will be fixed in tabs, and the value is the order of fixed tabs
+     */
     fixedIndexInTab?: number | null;
-    /** if set query parameters, it will be automatically carried when entering the route */
+    /**
+     * if set query parameters, it will be automatically carried when entering the route
+     */
     query?: { key: string; value: string }[] | null;
   }
 
