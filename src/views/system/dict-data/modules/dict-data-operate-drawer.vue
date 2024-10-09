@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import { computed, reactive, watch } from 'vue';
-import { useBoolean } from '@/hooks/common';
 import { useFormRules, useNaiveForm } from '@/hooks/modules/form';
-import { fetchSaveRole, fetchUpdateRole } from '@/service/api';
+import { fetchSaveDictData, fetchUpdateDictData } from '@/service/api';
 import { $t } from '@/locales';
 import { enableStatusOptions } from '@/constants/business';
-import ResourceAuthModal from './resource-auth-modal.vue';
 
 defineOptions({
-  name: 'RoleOperateDrawer'
+  name: 'DictDataOperateDrawer'
 });
 
 interface Props {
   /** the type of operation */
   operateType: NaiveUI.TableOperateType;
   /** the edit row data */
-  rowData?: Api.System.Role | null;
+  rowData?: Api.System.DictData | null;
+  /** dict type */
+  dictType: string;
 }
 
 const props = defineProps<Props>();
@@ -32,41 +32,38 @@ const visible = defineModel<boolean>('visible', {
 
 const { formRef, validate, restoreValidation } = useNaiveForm();
 const { defaultRequiredRule } = useFormRules();
-const { bool: resourceAuthVisible, setTrue: openResourceAuthModal } = useBoolean();
 
 const title = computed(() => {
   const titles: Record<NaiveUI.TableOperateType, string> = {
-    add: $t('page.system.role.addRole'),
-    edit: $t('page.system.role.editRole')
+    add: $t('page.system.dictData.addDictData'),
+    edit: $t('page.system.dictData.editDictData')
   };
   return titles[props.operateType];
 });
 
-type Model = Pick<Api.System.Role, 'id' | 'name' | 'code' | 'remark' | 'status'>;
+type Model = Pick<Api.System.DictData, 'id' | 'label' | 'value' | 'sort' | 'dictType' | 'remark' | 'status'>;
 
 const model: Model = reactive(createDefaultModel());
 
 function createDefaultModel(): Model {
   return {
     id: null,
-    name: '',
-    code: '',
+    label: '',
+    value: '',
+    sort: 0,
+    dictType: props.dictType,
     remark: '',
-    status: null
+    status: '1'
   };
 }
 
 type RuleKey = Exclude<keyof Model, 'remark'>;
 
 const rules: Record<RuleKey, App.Global.FormRule> = {
-  name: defaultRequiredRule,
-  code: defaultRequiredRule,
+  label: defaultRequiredRule,
+  value: defaultRequiredRule,
   status: defaultRequiredRule
 };
-
-const roleId = computed(() => props.rowData?.id || -1);
-
-const isEdit = computed(() => props.operateType === 'edit');
 
 function handleInitModel() {
   Object.assign(model, createDefaultModel());
@@ -83,7 +80,7 @@ function closeDrawer() {
 async function handleSubmit() {
   await validate();
   // request
-  const { error, _ } = model.id ? await fetchUpdateRole(model as Api.System.Role) : await fetchSaveRole(model as Api.System.Role)
+  const { error, _ } = model.id ? await fetchUpdateDictData(model as Api.System.DictData) : await fetchSaveDictData(model as Api.System.DictData)
   if (error) {
     return;
   }
@@ -105,25 +102,24 @@ watch(visible, () => {
   <NDrawer v-model:show="visible" display-directive="show" :width="360">
     <NDrawerContent :title="title" :native-scrollbar="false" closable>
       <NForm ref="formRef" :model="model" :rules="rules">
-        <NFormItem :label="$t('page.system.role.name')" path="name">
-          <NInput v-model:value="model.name" :placeholder="$t('page.system.role.form.name')" />
+        <NFormItem :label="$t('page.system.dictData.label')" path="label">
+          <NInput v-model:value="model.label" :placeholder="$t('page.system.dictData.form.label')" />
         </NFormItem>
-        <NFormItem :label="$t('page.system.role.code')" path="code">
-          <NInput v-model:value="model.code" :placeholder="$t('page.system.role.form.code')" />
+        <NFormItem :label="$t('page.system.dictData.value')" path="value">
+          <NInput v-model:value="model.value" :placeholder="$t('page.system.dictData.form.value')" />
         </NFormItem>
-        <NFormItem :label="$t('page.system.role.status')" path="status">
+        <NFormItem :label="$t('page.system.dictData.sort')" path="sort">
+          <NInput v-model:value="model.sort" :placeholder="$t('page.system.dictData.form.sort')" />
+        </NFormItem>
+        <NFormItem :label="$t('page.system.dictData.status')" path="status">
           <NRadioGroup v-model:value="model.status">
             <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
           </NRadioGroup>
         </NFormItem>
-        <NFormItem :label="$t('page.system.role.remark')" path="remark">
-          <NInput v-model:value="model.remark" :placeholder="$t('page.system.role.form.remark')" />
+        <NFormItem :label="$t('page.system.dictData.remark')" path="remark">
+          <NInput v-model:value="model.remark" :placeholder="$t('page.system.dictData.form.remark')" />
         </NFormItem>
       </NForm>
-      <NSpace v-if="isEdit">
-        <NButton @click="openResourceAuthModal">{{ $t('page.system.role.resourceAuth') }}</NButton>
-        <ResourceAuthModal v-model:visible="resourceAuthVisible" :role-id="roleId" />
-      </NSpace>
       <template #footer>
         <NSpace :size="16">
           <NButton @click="closeDrawer">{{ $t('common.cancel') }}</NButton>

@@ -142,3 +142,108 @@ export function fetchRemoveResource(id: number) {
     method: 'delete'
   });
 }
+
+/** get dict type list */
+export function fetchGetDictTypeList(params?: Api.System.DictTypeSearchParams) {
+  return request<Api.System.DictTypeList>({
+    url: '/system/dict/type/page',
+    method: 'get',
+    params
+  });
+}
+
+/** save dict type */
+export function fetchSaveDictType(data: Api.System.DictType) {
+  return request<void>({
+    url: '/system/dict/type',
+    method: 'post',
+    data
+  });
+}
+
+/** update dict type */
+export function fetchUpdateDictType(data: Api.System.DictType) {
+  return request<void>({
+    url: '/system/dict/type',
+    method: 'put',
+    data
+  });
+}
+
+/** remove dict type */
+export function fetchRemoveDictType(id: number) {
+  return request<void>({
+    url: '/system/dict/type/' + id,
+    method: 'delete'
+  });
+}
+
+/** get dict data list */
+export function fetchGetDictDataList(params?: Api.System.DictDataSearchParams) {
+  return request<Api.System.DictDataList>({
+    url: '/system/dict/data/page',
+    method: 'get',
+    params
+  });
+}
+
+/** save dict data */
+export function fetchSaveDictData(data: Api.System.DictData) {
+  return request<void>({
+    url: '/system/dict/data',
+    method: 'post',
+    data
+  });
+}
+
+/** update dict data */
+export function fetchUpdateDictData(data: Api.System.DictData) {
+  return request<void>({
+    url: '/system/dict/data',
+    method: 'put',
+    data
+  });
+}
+
+/** remove dict data */
+export function fetchRemoveDictData(id: number) {
+  return request<void>({
+    url: '/system/dict/data/' + id,
+    method: 'delete'
+  });
+}
+
+/** get oauth client list */
+export function fetchGetOauthClientList(params?: Api.System.OauthClientSearchParams) {
+  return request<Api.System.OauthClientList>({
+    url: '/system/oauth/client/page',
+    method: 'get',
+    params
+  });
+}
+
+/** save oauth client */
+export function fetchSaveOauthClient(data: Api.System.OauthClient) {
+  return request<void>({
+    url: '/system/oauth/client',
+    method: 'post',
+    data
+  });
+}
+
+/** update oauth client */
+export function fetchUpdateOauthClient(data: Api.System.OauthClient) {
+  return request<void>({
+    url: '/system/oauth/client',
+    method: 'put',
+    data
+  });
+}
+
+/** remove oauth client */
+export function fetchRemoveOauthClient(id: number) {
+  return request<void>({
+    url: '/system/oauth/client/' + id,
+    method: 'delete'
+  });
+}

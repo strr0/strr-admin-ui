@@ -281,6 +281,120 @@ declare namespace Api {
       children?: Resource[] | null;
     }> &
       ResourcePropsOfRoute;
+
+    /**
+     * dict type
+     */
+    type DictType = Common.CommonRecord<{
+      /**
+       * dict name
+       */
+      name: string;
+      /**
+       * dict type
+       */
+      type: string;
+      /**
+       * dict description
+       */
+      remark?: string;
+    }>;
+
+    /**
+     * dict type search params
+     */
+    type DictTypeSearchParams = CommonType.RecordNullable<
+      Pick<Api.System.DictType, 'name' | 'type' | 'status'> & CommonSearchParams
+    >;
+
+    /**
+     * dict type list
+     */
+    type DictTypeList = Common.PaginatingQueryRecord<DictType>;
+
+    /**
+     * dict data
+     */
+    type DictData = Common.CommonRecord<{
+      /**
+       * dict sort
+       */
+      sort: number;
+      /**
+       * dict label
+       */
+      label: string;
+      /**
+       * dict value
+       */
+      value: string;
+      /**
+       * dict type
+       */
+      dictType: string;
+      /**
+       * dict description
+       */
+      remark?: string;
+    }>;
+
+    /**
+     * dict data search params
+     */
+    type DictDataSearchParams = CommonType.RecordNullable<
+      Pick<Api.System.DictData, 'label' | 'value' | 'dictType' | 'status'> & CommonSearchParams
+    >;
+
+    /**
+     * dict data list
+     */
+    type DictDataList = Common.PaginatingQueryRecord<DictData>;
+
+    /**
+     * oauth client
+     */
+    type OauthClient = Common.CommonRecord<{
+      /**
+       * client id
+       */
+      clientId: string;
+      /**
+       * client secret
+       */
+      clientSecret: string;
+      /**
+       * grant type
+       */
+      grantType: string;
+      /**
+       * scope
+       */
+      scope: string;
+      /**
+       * redirect uri
+       */
+      redirectUri: string;
+      /**
+       * access timeout
+       */
+      accessTimeout: number | null;
+      /**
+       * refresh timeout
+       */
+      refreshTimeout: number | null;
+    }>;
+
+    /**
+     * oauth client search params
+     */
+    type OauthClientSearchParams = CommonType.RecordNullable<
+      Pick<Api.System.OauthClient, 'clientId' | 'grantType' | 'status'> & CommonSearchParams
+    >;
+
+    /**
+     * oauth client list
+     */
+    type OauthClientList = Common.PaginatingQueryRecord<OauthClient>;
   }
 
   /**

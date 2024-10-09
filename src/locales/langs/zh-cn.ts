@@ -161,11 +161,14 @@ const local: App.I18n.Schema = {
     system: '系统管理',
     user: '用户管理',
     role: '角色管理',
-    resource: '菜单管理',
+    resource: '资源管理',
     data: '数据管理',
     module: '模块管理',
     'module-item': '模块详情',
-    'data-item': '数据详情'
+    'data-item': '数据详情',
+    dict: '字典管理',
+    'dict-data': '字典数据',
+    'oauth-client': '客户端管理'
   },
   page: {
     login: {
@@ -333,6 +336,63 @@ const local: App.I18n.Schema = {
           iconify: 'iconify图标',
           local: '本地图标'
         }
+      },
+      dictType: {
+        title: '字典类型列表',
+        name: '字典名称',
+        type: '字典类型',
+        status: '字典状态',
+        remark: '字典描述',
+        form: {
+          name: '请输入字典名称',
+          type: '请输入字典类型',
+          status: '请选择字典状态',
+          remark: '请输入字典描述'
+        },
+        addDictType: '新增字典类型',
+        editDictType: '编辑字典类型'
+      },
+      dictData: {
+        title: '字典数据列表',
+        label: '字典标签',
+        value: '字典键值',
+        sort: '字典排序',
+        dictType: '字典类型',
+        status: '字典数据状态',
+        remark: '字典数据描述',
+        form: {
+          label: '请输入字典标签',
+          value: '请输入字典键值',
+          sort: '请输入字典排序',
+          dictType: '请输入字典类型',
+          status: '请选择字典数据状态',
+          remark: '请输入字典数据描述'
+        },
+        addDictData: '新增字典数据',
+        editDictData: '编辑字典数据'
+      },
+      oauthClient: {
+        title: '客户端列表',
+        clientId: '客户端',
+        clientSecret: '客户端密钥',
+        grantType: '授权方式',
+        scope: '作用域',
+        redirectUri: '回调地址',
+        accessTimeout: 'Access 超时',
+        refreshTimeout: 'Refresh 超时',
+        status: '客户端状态',
+        form: {
+          clientId: '请输入客户端',
+          clientSecret: '请输入客户端密钥',
+          grantType: '请输入授权方式',
+          scope: '请输入作用域',
+          redirectUri: '请输入回调地址',
+          accessTimeout: '请输入 Access 超时',
+          refreshTimeout: '请输入 Refresh 超时',
+          status: '请选择客户端状态',
+        },
+        addOauthClient: '新增客户端',
+        editOauthClient: '编辑客户端'
       }
     },
     data: {

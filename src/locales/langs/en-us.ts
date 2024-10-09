@@ -165,7 +165,10 @@ const local: App.I18n.Schema = {
     data: 'Data Manage',
     module: 'Module Manage',
     'module-item': 'Module Item',
-    'data-item': 'Data Item'
+    'data-item': 'Data Item',
+    dict: 'Dict Manage',
+    'dict-data': 'Dict Data',
+    'oauth-client': 'Client Manage'
   },
   page: {
     login: {
@@ -333,6 +336,63 @@ const local: App.I18n.Schema = {
           iconify: 'Iconify Icon',
           local: 'Local Icon'
         }
+      },
+      dictType: {
+        title: 'Dict Type List',
+        name: 'Dict Name',
+        type: 'Dict Type',
+        status: 'Dict Status',
+        remark: 'Dict Remark',
+        form: {
+          name: 'Please enter dict name',
+          type: 'Please enter dict type',
+          status: 'Please select dict status',
+          remark: 'Please enter dict remark'
+        },
+        addDictType: 'Add Dict Type',
+        editDictType: 'Edit Dict Type'
+      },
+      dictData: {
+        title: 'Dict Data List',
+        label: 'Dict Label',
+        value: 'Dict Value',
+        sort: 'Dict Sort',
+        dictType: 'Dict Type',
+        status: 'Dict Data Status',
+        remark: 'Dict Data Remark',
+        form: {
+          label: 'Please enter dict label',
+          value: 'Please enter dict value',
+          sort: 'Please enter dict sort',
+          dictType: 'Please enter dict type',
+          status: 'Please select dict data status',
+          remark: 'Please enter dict data remark'
+        },
+        addDictData: 'Add Dict Data',
+        editDictData: 'Edit Dict Data'
+      },
+      oauthClient: {
+        title: 'Client List',
+        clientId: 'Client Id',
+        clientSecret: 'Client Secret',
+        grantType: 'Grant Type',
+        scope: 'Scope',
+        redirectUri: 'Redirect Uri',
+        accessTimeout: 'Access Timeout',
+        refreshTimeout: 'Refresh Timeout',
+        status: 'Client Status',
+        form: {
+          clientId: 'Please enter client id',
+          clientSecret: 'Please enter client secret',
+          grantType: 'Please enter grant type',
+          scope: 'Please enter scope',
+          redirectUri: 'Please enter redirect uri',
+          accessTimeout: 'Please enter access timeout',
+          refreshTimeout: 'Please enter refresh timeout',
+          status: 'Please select client status',
+        },
+        addOauthClient: 'Add Client',
+        editOauthClient: 'Edit Client'
       }
     },
     data: {

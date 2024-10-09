@@ -160,7 +160,8 @@ function getSubmitParams() {
       iconType: model.iconType,
       icon: model.icon,
       status: model.status,
-      perms: model.perms
+      perms: model.perms,
+      parentId: model.parentId
     }
   }
 
