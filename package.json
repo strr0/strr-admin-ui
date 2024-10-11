@@ -21,6 +21,7 @@
     "colord": "2.9.3",
     "dayjs": "1.11.12",
     "echarts": "5.5.1",
+    "file-saver": "2.0.5",
     "klona": "^2.0.6",
     "localforage": "^1.10.0",
     "naive-ui": "2.39.0",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@iconify/json": "2.2.232",
+    "@types/file-saver": "2.0.7",
     "@types/node": "22.0.1",
     "@types/nprogress": "0.2.3",
     "@types/qs": "6.9.15",

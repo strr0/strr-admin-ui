@@ -309,6 +309,7 @@ export function fetchDownloadFile(id: number) {
   return request<void>({
     url: '/resource/oss/download/' + id,
     method: 'get',
+    responseType: 'blob'
   });
 }
 

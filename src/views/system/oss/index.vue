@@ -1,6 +1,7 @@
 <script setup lang="tsx">
+import FileSaver from 'file-saver';
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
-import { fetchGetOssList, fetchRemoveOss } from '@/service/api';
+import { fetchGetOssList, fetchDownloadFile, fetchRemoveOss } from '@/service/api';
 import { useAppStore } from '@/stores/modules/app';
 import { useBoolean } from '@/hooks/common';
 import { useRouterPush } from '@/hooks/modules/router';
@@ -81,8 +82,8 @@ const {
       width: 130,
       render: row => (
         <div class="flex-center gap-8px">
-          <NButton v-perms="system:oss:update" type="primary" ghost size="small" onClick={() => edit(row.id)}>
-            {$t('common.edit')}
+          <NButton v-perms="system:oss:download" type="primary" ghost size="small" onClick={() => download(row.id, row.originalName)}>
+            {$t('page.system.oss.downloadFile')}
           </NButton>
           <div v-perms="system:oss:remove">
             <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
@@ -131,8 +132,14 @@ async function handleDelete(id: number) {
   onDeleted();
 }
 
-function edit(id: number) {
-  handleEdit(id);
+async function download(id: number, filename: string) {
+  // request
+  const { error, data } = await fetchDownloadFile(id)
+  if (error) {
+    return;
+  }
+  
+  FileSaver.saveAs(data, filename);
 }
 </script>
 
