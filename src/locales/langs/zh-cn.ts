@@ -452,6 +452,7 @@ const local: App.I18n.Schema = {
         uploadFile: '文件上传',
         uploadFileSuccess: '文件上传成功',
         chooseFile: '选择文件',
+        downloadFile: '下载'
       }
     },
     data: {
@@ -474,7 +475,8 @@ const local: App.I18n.Schema = {
           path: '请输入模块路径',
           status: '请选择模块状态',
           remark: '请输入模块描述'
-        }
+        },
+        importModule: '导入'
       },
       table: {
         title: '业务表列表',

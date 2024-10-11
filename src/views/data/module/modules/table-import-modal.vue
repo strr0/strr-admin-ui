@@ -12,10 +12,11 @@ defineOptions({
   name: 'TableImportModal'
 });
 
-interface Props {
+interface Emits {
+  (e: 'submitted'): void;
 }
 
-const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
 const visible = defineModel<boolean>('visible', {
   default: false
@@ -96,6 +97,7 @@ async function handleSubmit() {
   window.$message?.success?.($t('common.modifySuccess'));
 
   closeModal();
+  emit('submitted');
 }
 
 watch(visible, val => {

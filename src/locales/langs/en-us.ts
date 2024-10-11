@@ -451,7 +451,8 @@ const local: App.I18n.Schema = {
         ossConfig: 'Oss Config',
         uploadFile: 'Upload File',
         uploadFileSuccess: 'Upload File Success',
-        chooseFile: 'Choose File'
+        chooseFile: 'Choose File',
+        downloadFile: 'Download'
       }
     },
     data: {
@@ -474,7 +475,8 @@ const local: App.I18n.Schema = {
           path: 'Please enter module path',
           status: 'Please select module status',
           remark: 'Please enter module remark'
-        }
+        },
+        importModule: 'Import'
       },
       table: {
         title: 'Business Table List',

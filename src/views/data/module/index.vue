@@ -180,7 +180,9 @@ async function register(id: number) {
     <NCard :title="$t('page.data.module.title')" :bordered="false" size="small" class="sm:flex-1-hidden card-wrapper">
       <template #header-extra>
         <TableHeaderOperation>
-          <AddOperation v-perms="'data:module:import'" @add="openTableImportModal" />
+          <NButton v-perms="'data:module:import'" type="primary" ghost size="small" @click="openTableImportModal">
+            {{$t('page.data.module.importModule')}}
+          </NButton>
           <DeleteOperation v-perms="'data:module:remove'" :disabled-delete="checkedRowKeys.length === 0" @delete="handleBatchDelete" />
           <RefreshOperation :loading="loading" @refresh="getData" />
           <TableColumnSetting v-model:columns="columnChecks" />
@@ -200,7 +202,7 @@ async function register(id: number) {
         class="sm:h-full"
       />
     </NCard>
-    <TableImportModal v-model:visible="tableImportVisible" />
+    <TableImportModal v-model:visible="tableImportVisible" @submitted="getData" />
   </div>
 </template>
 
