@@ -168,7 +168,9 @@ const local: App.I18n.Schema = {
     'data-item': '数据详情',
     dict: '字典管理',
     'dict-data': '字典数据',
-    'oauth-client': '客户端管理'
+    'oauth-client': '客户端管理',
+    'oss-config': '配置管理',
+    oss: '文件管理'
   },
   page: {
     login: {
@@ -393,6 +395,63 @@ const local: App.I18n.Schema = {
         },
         addOauthClient: '新增客户端',
         editOauthClient: '编辑客户端'
+      },
+      ossConfig: {
+        title: '配置列表',
+        configKey: '配置 key',
+        accessKey: 'accessKey',
+        secretKey: '秘钥',
+        bucketName: '桶名称',
+        prefix: '前缀',
+        endpoint: '访问站点',
+        domain: '自定义域名',
+        isHttps: '是否 https',
+        region: '域',
+        accessPolicy: '桶权限类型',
+        remark: '备注',
+        status: '是否默认',
+        form: {
+          configKey: '请输入配置 key',
+          accessKey: '请输入 accessKey',
+          secretKey: '请输入秘钥',
+          bucketName: '请输入桶名称',
+          prefix: '请输入前缀',
+          endpoint: '请输入访问站点',
+          domain: '请输入自定义域名',
+          isHttps: '请输入是否 https',
+          region: '请输入域',
+          accessPolicy: '请输入桶权限类型',
+          remark: '请输入备注',
+          status: '请选择是否默认'
+        },
+        addOssConfig: '新增配置',
+        editOssConfig: '编辑配置',
+        accessPolicyOption: {
+          private: 'private',
+          public: 'public',
+          custom: 'custom'
+        }
+      },
+      oss: {
+        title: '文件列表',
+        service: '服务商',
+        fileName: '文件名',
+        originalName: '原名',
+        fileSuffix: '文件后缀名',
+        url: 'URL 地址',
+        form: {
+          service: '请输入服务商',
+          fileName: '请输入文件名',
+          originalName: '请输入原名',
+          fileSuffix: '请输入文件后缀名',
+          url: '请输入 URL 地址'
+        },
+        addOss: '新增文件',
+        editOss: '编辑文件',
+        ossConfig: '配置管理',
+        uploadFile: '文件上传',
+        uploadFileSuccess: '文件上传成功',
+        chooseFile: '选择文件',
       }
     },
     data: {

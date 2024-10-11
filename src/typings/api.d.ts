@@ -395,6 +395,115 @@ declare namespace Api {
      * oauth client list
      */
     type OauthClientList = Common.PaginatingQueryRecord<OauthClient>;
+
+    /**
+     * access policy
+     *
+     * - "0": private
+     * - "1": public
+     * - "2": custom
+     */
+    type AccessPolicy = '0' | '1' | '2';
+
+    /**
+     * oss config
+     */
+    type OssConfig = Common.CommonRecord<{
+      /**
+       * config key
+       */
+      configKey: string;
+      /**
+       * access key
+       */
+      accessKey: string;
+      /**
+       * secret key
+       */
+      secretKey: string;
+      /**
+       * bucket name
+       */
+      bucketName: string;
+      /**
+       * prefix
+       */
+      prefix: string;
+      /**
+       * endpoint
+       */
+      endpoint: string;
+      /**
+       * domain
+       */
+      domain: string;
+      /**
+       * is https
+       */
+      isHttps: string;
+      /**
+       * region
+       */
+      region: string;
+      /**
+       * access policy
+       */
+      accessPolicy: AccessPolicy;
+      /**
+       * remark
+       */
+      remark?: string;
+    }>;
+
+    /**
+     * oss config search params
+     */
+    type OssConfigSearchParams = CommonType.RecordNullable<
+      Pick<Api.System.OssConfig, 'configKey' | 'bucketName' | 'status'> & CommonSearchParams
+    >;
+
+    /**
+     * oss config list
+     */
+    type OssConfigList = Common.PaginatingQueryRecord<OssConfig>;
+
+    /**
+     * oss
+     */
+    type Oss = Common.CommonRecord<{
+      /**
+       * service
+       */
+      service: string;
+      /**
+       * file name
+       */
+      fileName: string;
+      /**
+       * original name
+       */
+      originalName: string;
+      /**
+       * file suffix
+       */
+      fileSuffix: string;
+      /**
+       * url
+       */
+      url: string;
+    }>;
+
+    /**
+     * oss search params
+     */
+    type OssSearchParams = CommonType.RecordNullable<
+      Pick<Api.System.Oss, 'fileName' | 'originalName' | 'fileSuffix' | 'service'> & CommonSearchParams
+    >;
+
+    /**
+     * oss list
+     */
+    type OssList = Common.PaginatingQueryRecord<Oss>;
   }
 
   /**

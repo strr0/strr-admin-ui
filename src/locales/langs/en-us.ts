@@ -168,7 +168,9 @@ const local: App.I18n.Schema = {
     'data-item': 'Data Item',
     dict: 'Dict Manage',
     'dict-data': 'Dict Data',
-    'oauth-client': 'Client Manage'
+    'oauth-client': 'Client Manage',
+    'oss-config': 'Oss Config',
+    oss: 'Oss Manage'
   },
   page: {
     login: {
@@ -393,6 +395,63 @@ const local: App.I18n.Schema = {
         },
         addOauthClient: 'Add Client',
         editOauthClient: 'Edit Client'
+      },
+      ossConfig: {
+        title: 'Oss Config List',
+        configKey: 'Config Key',
+        accessKey: 'Access Key',
+        secretKey: 'Secret Key',
+        bucketName: 'Bucket Name',
+        prefix: 'Prefix',
+        endpoint: 'Endpoint',
+        domain: 'Domain',
+        isHttps: 'Is Https',
+        region: 'Region',
+        accessPolicy: 'Access Policy',
+        remark: 'Remark',
+        status: 'Status',
+        form: {
+          configKey: 'Please enter config key',
+          accessKey: 'Please enter  access key',
+          secretKey: 'Please enter secret key',
+          bucketName: 'Please enter bucket name',
+          prefix: 'Please enter prefix',
+          endpoint: 'Please enter endpoint',
+          domain: 'Please enter domain',
+          isHttps: 'Please enter is https',
+          region: 'Please enter region',
+          accessPolicy: 'Please enter access policy',
+          remark: 'Please enter remark',
+          status: 'Please select status'
+        },
+        addOssConfig: 'Add Oss Config',
+        editOssConfig: 'Edit Oss Config',
+        accessPolicyOption: {
+          private: 'private',
+          public: 'public',
+          custom: 'custom'
+        }
+      },
+      oss: {
+        title: 'Oss List',
+        service: 'Service',
+        fileName: 'File Name',
+        originalName: 'Original Name',
+        fileSuffix: 'File Suffix',
+        url: 'URL',
+        form: {
+          service: 'Please enter service',
+          fileName: 'Please enter file name',
+          originalName: 'Please enter original name',
+          fileSuffix: 'Please enter file suffix',
+          url: 'Please enter url'
+        },
+        addOss: 'Add Oss',
+        editOss: 'Edit Oss',
+        ossConfig: 'Oss Config',
+        uploadFile: 'Upload File',
+        uploadFileSuccess: 'Upload File Success',
+        chooseFile: 'Choose File'
       }
     },
     data: {

@@ -21,3 +21,11 @@ export const resourceIconTypeRecord: Record<Api.System.IconType, App.I18n.I18nKe
 };
 
 export const resourceIconTypeOptions = transformRecordToOption(resourceIconTypeRecord);
+
+export const accessPolicyRecord: Record<Api.System.AccessPolicy, App.I18n.I18nKey> = {
+  '0': 'page.system.ossConfig.accessPolicyOption.private',
+  '1': 'page.system.ossConfig.accessPolicyOption.public',
+  '2': 'page.system.ossConfig.accessPolicyOption.custom'
+};
+
+export const accessPolicyOptions = transformRecordToOption(accessPolicyRecord);
