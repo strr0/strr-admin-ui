@@ -14,7 +14,7 @@ const props = defineProps<Props>();
 
 type ModuleModel = Pick<Api.Data.Module, 'id' | 'tableId' | 'name' | 'code' | 'path' | 'remark' | 'status'>;
 type TableModel = Pick<Api.Data.Table, 'id' | 'name' | 'comment' | 'remark' | 'status'>;
-type ColumnModel = Pick<Api.Data.Column, 'id' | 'tableId' | 'name' | 'comment' | 'pk' | 'form' | 'visible' | 'order' | 'status'> & { 'index': number };
+type ColumnModel = Pick<Api.Data.Column, 'id' | 'tableId' | 'name' | 'comment' | 'pk' | 'form' | 'visible' | 'sort' | 'status'> & { 'index': number };
 
 type Model = ModuleModel & {
   table: TableModel,

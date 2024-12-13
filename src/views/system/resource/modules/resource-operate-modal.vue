@@ -53,7 +53,7 @@ type Model = Pick<
   | 'path'
   | 'component'
   | 'i18nKey'
-  | 'order'
+  | 'sort'
   | 'cache'
   | 'frame'
   | 'icon'
@@ -83,7 +83,7 @@ function createDefaultModel(): Model {
     iconType: '1',
     cache: '0',
     frame: '0',
-    order: 0,
+    sort: 0,
     visible: '1',
     perms: '',
     status: '1',
@@ -233,8 +233,8 @@ watch(
           <NFormItemGi v-if="!buttonProps" span="24 m:12" :label="$t('page.system.resource.i18nKey')" path="i18nKey">
             <NInput v-model:value="model.i18nKey" :placeholder="$t('page.system.resource.form.i18nKey')" />
           </NFormItemGi>
-          <NFormItemGi v-if="!buttonProps" span="24 m:12" :label="$t('page.system.resource.order')" path="order">
-            <NInputNumber v-model:value="model.order" class="w-full" :placeholder="$t('page.system.resource.form.order')" />
+          <NFormItemGi v-if="!buttonProps" span="24 m:12" :label="$t('page.system.resource.sort')" path="sort">
+            <NInputNumber v-model:value="model.sort" class="w-full" :placeholder="$t('page.system.resource.form.sort')" />
           </NFormItemGi>
           <NFormItemGi span="24 m:12" :label="$t('page.system.resource.iconTypeTitle')" path="iconType">
             <NRadioGroup v-model:value="model.iconType">

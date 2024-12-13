@@ -124,8 +124,8 @@ const { columns, columnChecks, data, loading, getData } = useTable({
       align: 'center'
     },
     {
-      key: 'order',
-      title: $t('page.system.resource.order'),
+      key: 'sort',
+      title: $t('page.system.resource.sort'),
       align: 'center',
       width: 60
     },

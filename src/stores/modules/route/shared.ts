@@ -9,7 +9,7 @@ import { useSvgIcon } from '@/hooks/modules/icon';
  */
 function sortRouteByOrder(route: CustomRoute) {
   if (route.children?.length) {
-    route.children.sort((next, prev) => (Number(next.meta?.order) || 0) - (Number(prev.meta?.order) || 0));
+    route.children.sort((next, prev) => (Number(next.meta?.sort) || 0) - (Number(prev.meta?.sort) || 0));
     route.children.forEach(sortRouteByOrder);
   }
 
@@ -22,7 +22,7 @@ function sortRouteByOrder(route: CustomRoute) {
  * @param routes routes
  */
 export function sortRoutesByOrder(routes: CustomRoute[]) {
-  routes.sort((next, prev) => (Number(next.meta?.order) || 0) - (Number(prev.meta?.order) || 0));
+  routes.sort((next, prev) => (Number(next.meta?.sort) || 0) - (Number(prev.meta?.sort) || 0));
   routes.forEach(sortRouteByOrder);
 
   return routes;

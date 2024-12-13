@@ -94,12 +94,14 @@ const {
       width: 240,
       render: row => (
         <div class="flex-center gap-8px">
-          <NButton type="success" ghost size="small" onClick={() => preview(row.id)}>
-            {$t('common.preview')}
-          </NButton>
-          <NButton v-perms="data:module:register" type="warning" ghost size="small" onClick={() => register(row.id)}>
-            {$t('common.register')}
-          </NButton>
+          { row.status == '1' ?
+            <NButton v-perms="data:module:query" type="success" ghost size="small" onClick={() => preview(row.id)}>
+              {$t('common.preview')}
+            </NButton> :
+            <NButton v-perms="data:module:register" type="warning" ghost size="small" onClick={() => register(row.id)}>
+              {$t('common.register')}
+            </NButton>
+          }
           <NButton v-perms="data:module:update" type="primary" ghost size="small" onClick={() => edit(row.id)}>
             {$t('common.edit')}
           </NButton>

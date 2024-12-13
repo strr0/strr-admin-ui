@@ -222,7 +222,7 @@ declare namespace Api {
     type ResourcePropsOfRoute = Pick<
       import('vue-router').RouteMeta,
       | 'i18nKey'
-      | 'order'
+      | 'sort'
       | 'query'
     >;
 
@@ -571,9 +571,9 @@ declare namespace Api {
        */
       visible: string;
       /**
-       * column order
+       * column sort
        */
-      order: number;
+      sort: number;
     }>;
 
     /**

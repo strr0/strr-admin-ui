@@ -53,9 +53,9 @@ declare module 'vue-router' {
      */
     iconFontSize?: number;
     /**
-     * Router order
+     * Router sort
      */
-    order?: number | null;
+    sort?: number | null;
     /**
      * The outer link of the route
      */
