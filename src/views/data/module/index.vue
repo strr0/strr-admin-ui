@@ -1,6 +1,6 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
-import { fetchGetModuleList, fetchRemoveModule, fetchRegisterModule } from '@/service/api';
+import { fetchGetModuleList, fetchRemoveModule, fetchRegisterModule, fetchUnregisterModule } from '@/service/api';
 import { $t } from '@/locales';
 import { useAppStore } from '@/stores/modules/app';
 import { enableStatusRecord } from '@/constants/business';
@@ -105,18 +105,32 @@ const {
           <NButton v-perms="data:module:update" type="primary" ghost size="small" onClick={() => edit(row.id)}>
             {$t('common.edit')}
           </NButton>
-          <div v-perms="data:module:remove">
-            <NPopconfirm onPositiveClick={() => handleDelete(row.tableId)}>
-              {{
-                default: () => $t('common.confirmDelete'),
-                trigger: () => (
-                  <NButton type="error" ghost size="small">
-                    {$t('common.delete')}
-                  </NButton>
-                )
-              }}
-            </NPopconfirm>
-          </div>
+          { row.status == '0' ?
+            <div v-perms="data:module:remove">
+              <NPopconfirm onPositiveClick={() => handleDelete(row.tableId)}>
+                {{
+                  default: () => $t('common.confirmDelete'),
+                  trigger: () => (
+                    <NButton type="error" ghost size="small">
+                      {$t('common.delete')}
+                    </NButton>
+                  )
+                }}
+              </NPopconfirm>
+            </div> :
+            <div v-perms="data:module:unregister">
+              <NPopconfirm onPositiveClick={() => unregister(row.tableId)}>
+                {{
+                  default: () => $t('common.confirmUnregister'),
+                  trigger: () => (
+                    <NButton type="error" ghost size="small">
+                      {$t('common.unregister')}
+                    </NButton>
+                  )
+                }}
+              </NPopconfirm>
+            </div>
+          }
         </div>
       )
     }
@@ -173,6 +187,20 @@ async function register(id: number) {
   }
 
   window.$message?.success($t('common.updateSuccess'));
+
+  await getData()
+}
+
+async function unregister(id: number) {
+  // request
+  const { error, _ } = await fetchUnregisterModule(id)
+  if (error) {
+    return;
+  }
+
+  window.$message?.success($t('common.updateSuccess'));
+
+  await getData()
 }
 </script>
 

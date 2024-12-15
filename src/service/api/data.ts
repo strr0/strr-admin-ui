@@ -73,3 +73,17 @@ export function fetchRegisterModule(id: number) {
     }
   });
 }
+
+/** unregister */
+export function fetchUnregisterModule(id: number) {
+  return request<void>({
+    url: '/data/module/unregister',
+    method: 'post',
+    data: {
+      id
+    },
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+}

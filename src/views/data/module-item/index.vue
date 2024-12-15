@@ -13,7 +13,7 @@ interface Props {
 const props = defineProps<Props>();
 
 type ModuleModel = Pick<Api.Data.Module, 'id' | 'tableId' | 'name' | 'code' | 'path' | 'remark' | 'status'>;
-type TableModel = Pick<Api.Data.Table, 'id' | 'name' | 'comment' | 'remark' | 'status'>;
+type TableModel = Pick<Api.Data.Table, 'id' | 'name' | 'comment' | 'remark'>;
 type ColumnModel = Pick<Api.Data.Column, 'id' | 'tableId' | 'name' | 'comment' | 'pk' | 'form' | 'visible' | 'sort' | 'status'> & { 'index': number };
 
 type Model = ModuleModel & {
@@ -33,8 +33,7 @@ const model = ref<Model>({
     id: null,
     name: '',
     comment: '',
-    remark: '',
-    status: '0'
+    remark: ''
   },
   columns: []
 });

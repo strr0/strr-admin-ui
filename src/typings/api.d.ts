@@ -534,7 +534,7 @@ declare namespace Api {
      * table search params
      */
     type TableSearchParams = CommonType.RecordNullable<
-      Pick<Api.Data.Table, 'name' | 'comment' | 'status'> & CommonSearchParams
+      Pick<Api.Data.Table, 'name' | 'comment'> & CommonSearchParams
     >;
 
     /**
